@@ -1,2 +1,2 @@
 #!/bin/bash
-java -cp .:bin:mbusmaster.jar ModbusScan $1 $2 $3 $4
+java -cp .:bin:mbusmaster.jar XRWScan $1 $2 $3
