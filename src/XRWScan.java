@@ -73,7 +73,7 @@ END$$
 		
 		
 		System.err.println("# Starting scan");
-		System.err.println("# Network Address: ");
+		System.err.println("# Network Address: " + networkAddress);
 
 
 		while ( true ) {
