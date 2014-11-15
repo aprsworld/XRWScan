@@ -11,25 +11,20 @@ public class XRWScan {
 		if ( 0==pulseTime || 65535==pulseTime )
 			return 0.0;
 		
-/*
-DROP FUNCTION IF EXISTS pulseTimeAnemometer;
-DELIMITER $$
-
-CREATE FUNCTION pulseTimeAnemometer(pulseTime DOUBLE, m DOUBLE, b DOUBLE) RETURNS DOUBLE
-BEGIN
-        IF pulseTime = 0 OR pulseTime = 65535 THEN
-                RETURN 0;
-        END IF;
-
-        RETURN ROUND((m*10000.0)/pulseTime + b,2);
-END$$
-*/
-
 		return (0.857*10000.0)/pulseTime + 0.725;
 		
 		
 	}
 	
+	protected double anemometer40HC(int pulseTime) {
+		if ( 0==pulseTime || 65535==pulseTime )
+			return 0.0;
+		
+		return (1.711*10000.0)/pulseTime + 0.78;
+		
+		
+	}
+
 	
 	protected boolean getCounters(int networkAddress) {
 		short s[] = new short[18];
@@ -37,9 +32,9 @@ END$$
 		try { 
 			mbus.readInputRegisters(networkAddress, 0, s);
 			
-			System.out.println("A" + anemometer40R(s[1]));
-			System.out.println("B" + anemometer40R(s[7]));
-			System.out.println("C" + anemometer40R(s[13]));
+			System.out.println("A" + anemometer40HC(s[1]));
+//			System.out.println("B" + anemometer40R(s[7]));
+//			System.out.println("C" + anemometer40R(s[13]));
 			
 			
 		} catch ( BusProtocolException bpe ) {
