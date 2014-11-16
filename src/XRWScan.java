@@ -39,7 +39,7 @@ public class XRWScan {
 			
 		} catch ( BusProtocolException bpe ) {
 			System.err.println("# BusProtocolException: " + bpe);
-			return false;
+			return true;
 		} catch ( IOException ioe ) {
 			System.err.println("# IOException: " + ioe);
 			return false;
